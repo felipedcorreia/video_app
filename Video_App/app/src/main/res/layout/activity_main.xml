@@ -6,12 +6,29 @@
     android:layout_height="match_parent"
     tools:context="correia.felipe.video_app.MainActivity">
 
+
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/brecord"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="19dp" />
+
     <Button
         android:id="@+id/brecord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:text="Record"
-        android:onClick="captureVideo"/>
+        android:layout_alignParentStart="true"
+        android:text="Record" />
+
+    <Button
+        android:id="@+id/bplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/videoView"
+        android:text="Play" />
+
 </RelativeLayout>
