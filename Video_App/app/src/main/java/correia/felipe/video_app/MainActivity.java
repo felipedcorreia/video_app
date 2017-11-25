@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private int START_CAMERA = 0;
     Button brecord, bplay;
     VideoView vv;
-    private boolean bVideoIsBeingTouched = false;
+    private boolean touched = false;
     private Handler mHandler = new Handler();
 
     @Override
@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         brecord = (Button) findViewById(R.id.brecord);
-        bplay = (Button) findViewById(R.id.bplay);
         vv = (VideoView) findViewById(R.id.videoView);
 
 
@@ -55,13 +54,13 @@ public class MainActivity extends AppCompatActivity {
         vv.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                if (!bVideoIsBeingTouched) {
-                    bVideoIsBeingTouched = true;
+                if (!touched) {
+                    touched = true;
                     vv.requestFocus();
-                    
+
                     mHandler.postDelayed(new Runnable() {
                         public void run() {
-                            bVideoIsBeingTouched = false;
+                            touched = false;
                         }
                     }, 100);
                 }
@@ -70,18 +69,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        bplay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
     }
 
-
-
-
-    public void captureVideo(){
+/*    public void captureVideo(){
         Intent camera_intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
         File video_file = getFilepath();
         Uri video_uri = Uri.fromFile(video_file);
@@ -89,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
         camera_intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY,1);
         startActivityForResult(camera_intent, VIDEO_REQUEST_CODE);
     }
+    */
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -101,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
     }
-
+/*
     public File getFilepath(){
         File folder = new File("sdcard/video_app");
         if(!folder.exists()){
@@ -112,4 +103,5 @@ public class MainActivity extends AppCompatActivity {
 
         return video_file;
     }
+    */
 }
