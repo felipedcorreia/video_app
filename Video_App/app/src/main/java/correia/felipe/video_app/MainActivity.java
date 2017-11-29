@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
         brecord = (Button) findViewById(R.id.brecord);
         vv = (VideoView) findViewById(R.id.videoView);
 
+        vv.setVisibility(View.INVISIBLE);
+
 
         brecord.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         vv.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
+                mp.setVolume(0,0);
                 mp.setLooping(true);
             }
         });
@@ -86,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
         if(requestCode==START_CAMERA && resultCode==RESULT_OK){
                 Uri videoUri = data.getData();
                 vv.setVideoURI(videoUri);
+                vv.setVisibility(View.VISIBLE);
                 vv.start();
             }else {
                 Toast.makeText(getApplicationContext(), "Opsss.....", Toast.LENGTH_SHORT).show();
